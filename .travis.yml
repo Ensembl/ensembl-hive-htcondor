@@ -9,9 +9,15 @@ services:
 
 install:
     - docker pull robsyme/docker-sge
+    - pushd scripts/docker-htcondor
+    - docker build -t docker-htcondor .
+    - popd
+    - pushd scripts/docker-ehive-htcondor-test
+    - docker build -t docker-ehive-htcondor-test .
+    - popd
     - git clone --depth 1 --branch master https://github.com/Ensembl/ensembl-hive
     - env
 
 script:
-    - docker run -v /home/travis:/home/travis robsyme/docker-sge /home/travis/build/Ensembl/ensembl-hive-sge/travisci/setup_docker_and_run_tests.sh
+    - docker run -v /home/travis:/home/travis docker-ehive-htcondor-test -u condoradmin /home/travis/build/Ensembl/ensembl-hive-condor/travisci/run_tests.sh
 
