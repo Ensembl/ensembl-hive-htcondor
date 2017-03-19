@@ -20,8 +20,8 @@ RUN echo "Package: xserver-xorg*\nPin: release *\nPin-Priority: -1" >> /etc/apt/
 RUN echo "Package: unity*\nPin: release *\nPin-Priority: -1" >> /etc/apt/preferences
 RUN echo "Package: gnome*\nPin: release *\nPin-Priority: -1" >> /etc/apt/preferences
 
-# Faster when built from abroad
-RUN sed -i 's/\/archive.ubuntu.com/\/kr.archive.ubuntu.com/' /etc/apt/sources.list
+# Uncomment this to make the build faster from abroad
+# RUN sed -i 's/\/archive.ubuntu.com/\/gb.archive.ubuntu.com/' /etc/apt/sources.list
 
 # install required software as per README.BUILD
 RUN apt-get update -y
