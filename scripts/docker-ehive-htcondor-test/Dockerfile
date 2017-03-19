@@ -22,7 +22,7 @@ ARG EHIVE_LOCATION
 # Place symlinks for ensembl-hive and ensembl-hive-condor in condoradmin's home directory
 RUN ln -s "$HIVE_CONDOR_LOCATION" /home/condoradmin/ensembl-hive-condor
 RUN ln -s "$EHIVE_LOCATION" /home/condoradmin/ensembl-hive
-RUN ln -s ensembl-hive-condor/scripts/custom-docker/setup_environment.sh /home/condoradmin/
+RUN ln -s ensembl-hive-condor/scripts/docker-ehive-htcondor-test/setup_environment.sh /home/condoradmin/
 
 # start my_init on execution and pass bash to runit
 ENTRYPOINT ["/sbin/my_init", "--"]
