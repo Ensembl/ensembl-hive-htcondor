@@ -29,6 +29,9 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y man htcondor
 
+# turn off password requirement for sudo groups users
+RUN sed -i "s/^\%sudo\tALL=(ALL:ALL)\sALL/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
+
 # add files to container from local directory
 ADD docker_condor_init.sh /etc/my_init.d/01_docker_condor_init.sh
 
