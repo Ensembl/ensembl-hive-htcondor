@@ -1,0 +1,24 @@
+# We want the container to consider itself as available, so we hardcode
+# some Condor decision variables to pretend the system is idle, and that
+# jobs can be started unconditionnally
+
+KeyboardBusy            = False
+ConsoleBusy             = False
+CPUIdle                 = True
+CPUBusy                 = False
+
+START = True
+
+
+## Do you want to allow condor_config_val -reset to work at all?
+## This feature is disabled by default, so to enable, you must
+## uncomment the following setting and change the value to "True".
+## Note: changing this requires a restart not just a reconfig.
+ENABLE_RUNTIME_CONFIG = True
+
+
+# This is needed to tell condor the execution slots match the submission
+# nodes, and the same user can be used to run jobs (otherwise jobs are
+# run as "nobody")
+TRUST_UID_DOMAIN  = True
+
