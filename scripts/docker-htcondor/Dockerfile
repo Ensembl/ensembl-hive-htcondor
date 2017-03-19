@@ -23,7 +23,8 @@ RUN echo "Package: gnome*\nPin: release *\nPin-Priority: -1" >> /etc/apt/prefere
 # Uncomment this to make the build faster from abroad
 # RUN sed -i 's/\/archive.ubuntu.com/\/gb.archive.ubuntu.com/' /etc/apt/sources.list
 
-# install required software as per README.BUILD
+# install required software
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y man htcondor
