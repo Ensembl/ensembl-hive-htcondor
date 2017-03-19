@@ -41,9 +41,7 @@ RUN chmod ug+x /etc/my_init.d/01_docker_condor_init.sh
 WORKDIR $HOME
 
 # install Condor user
-RUN mkdir /opt/condor
-RUN useradd -r -m -U -d /home/condoradmin -s /bin/bash -c "Docker Condor Admin" condoradmin
-RUN usermod -a -G sudo condoradmin
+RUN useradd -r -m -U -G sudo -d /home/condoradmin -s /bin/bash -c "Docker Condor Admin" condoradmin
 
 # return to home directory
 WORKDIR $HOME
