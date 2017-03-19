@@ -8,7 +8,6 @@ services:
   - docker
 
 install:
-    - docker pull robsyme/docker-sge
     - pushd scripts/docker-htcondor
     - docker build -t docker-htcondor .
     - popd
