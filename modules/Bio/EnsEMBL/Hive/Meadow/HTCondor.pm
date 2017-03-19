@@ -2,11 +2,11 @@
 
 =head1 NAME
 
-    Bio::EnsEMBL::Hive::Meadow::Condor
+    Bio::EnsEMBL::Hive::Meadow::HTCondor
 
 =head1 DESCRIPTION
 
-    This is the 'Condor' implementation of Meadow
+    This is the 'HTCondor' implementation of Meadow
 
 =head1 LICENSE
 
@@ -32,7 +32,7 @@ This module has been written in collaboration between Lel Eory (University of Ed
 =cut
 
 
-package Bio::EnsEMBL::Hive::Meadow::Condor;
+package Bio::EnsEMBL::Hive::Meadow::HTCondor;
 
 use strict;
 
@@ -41,7 +41,7 @@ use base ('Bio::EnsEMBL::Hive::Meadow');
 
 sub name {  # also called to check for availability;
 
-    # Query the name of the Condor master
+    # Query the name of the HTCondor master
     my $cmd = 'condor_status -master 2> /dev/null | tail -n 1';
 
     if(my $name = `$cmd`) {

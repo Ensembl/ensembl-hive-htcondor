@@ -8,7 +8,7 @@ set -e
 
 echo "DEBUG: Environment of $0"; env; id; echo "END_DEBUG"
 
-BUILD_DIR=/home/condoradmin/ensembl-hive-condor
+BUILD_DIR=/home/condoradmin/ensembl-hive-htcondor
 cd $BUILD_DIR
 export EHIVE_ROOT_DIR=$PWD/ensembl-hive
 export PERL5LIB=$EHIVE_ROOT_DIR/modules:$PWD/modules
