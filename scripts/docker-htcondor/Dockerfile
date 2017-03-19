@@ -38,14 +38,8 @@ ADD condor_config.local /etc/condor/condor_config.local
 
 RUN chmod ug+x /etc/my_init.d/01_docker_condor_init.sh
 
-# change to home directory
-WORKDIR $HOME
-
 # install Condor user
 RUN useradd -r -m -U -G sudo -d /home/condoradmin -s /bin/bash -c "Docker Condor Admin" condoradmin
-
-# return to home directory
-WORKDIR $HOME
 
 # clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
