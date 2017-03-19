@@ -16,6 +16,6 @@ apt-get install -qqy sqlite3 libdbd-sqlite3-perl libdbi-perl libcapture-tiny-per
 # so we copy the whole directory for the condoradmin user
 CONDORADMIN_HOME=/home/condoradmin
 cp -a /home/travis/build/muffato/ensembl-hive-htcondor $CONDORADMIN_HOME
-chown -R condoradmin: $SGEADMIN_HOME/ensembl-hive-htcondor
-sudo --login -u condoradmin $SGEADMIN_HOME/ensembl-hive-htcondor/travisci/run_tests.sh
+chown -R condoradmin: $CONDORADMIN_HOME/ensembl-hive-htcondor
+sudo --login -u condoradmin $CONDORADMIN_HOME/ensembl-hive-htcondor/travisci/run_tests.sh
 
