@@ -18,5 +18,5 @@ install:
     - env
 
 script:
-    - docker run -v /home/travis:/home/travis docker-ehive-htcondor-test -u condoradmin /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/run_tests.sh
+    - docker run -v /home/travis:/home/travis docker-ehive-htcondor-test /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
 
