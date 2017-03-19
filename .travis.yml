@@ -1,0 +1,17 @@
+language: "perl"
+
+perl:
+  - "5.10"
+
+sudo: required
+services:
+  - docker
+
+install:
+    - docker pull robsyme/docker-sge
+    - git clone --depth 1 --branch master https://github.com/Ensembl/ensembl-hive
+    - env
+
+script:
+    - docker run -v /home/travis:/home/travis robsyme/docker-sge /home/travis/build/Ensembl/ensembl-hive-sge/travisci/setup_docker_and_run_tests.sh
+
