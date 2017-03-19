@@ -11,12 +11,9 @@ install:
     - pushd scripts/docker-htcondor
     - docker build -t docker-htcondor .
     - popd
-    - pushd scripts/docker-ehive-htcondor-test
-    - docker build -t docker-ehive-htcondor-test --build-arg HIVE_CONDOR_LOCATION=$TRAVIS_BUILD_DIR --build-arg EHIVE_LOCATION=$TRAVIS_BUILD_DIR/ensembl-hive .
-    - popd
     - git clone --depth 1 --branch master https://github.com/Ensembl/ensembl-hive
     - env
 
 script:
-    - docker run -v /home/travis:/home/travis docker-ehive-htcondor-test /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
+    - docker run -v /home/travis:/home/travis docker-htcondor /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
 

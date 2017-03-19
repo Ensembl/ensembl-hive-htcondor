@@ -8,6 +8,10 @@ set -e
 
 echo "DEBUG: Environment of $0"; env; id; echo "END_DEBUG"
 
+# Install some packages inside the container
+apt-get update
+apt-get install -qqy sqlite3 libdbd-sqlite3-perl libdbi-perl libcapture-tiny-perl libxml-simple-perl libdatetime-perl libjson-perl libtest-exception-perl perl-modules libtest-warn-perl
+
 # It seems that non-root users cannot execute anything from /home/travis
 # so we copy the whole directory for the condoradmin user
 CONDORADMIN_HOME=/home/condoradmin
