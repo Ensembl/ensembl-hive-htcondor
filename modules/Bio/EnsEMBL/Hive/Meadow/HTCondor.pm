@@ -188,13 +188,13 @@ sub submit_workers {
 
     #$submit_log_subdir = 'TEST';
 
+    # Assuming the executable has no space in it
     $worker_cmd =~ /^(\S+)\s+(.*)/;
     my $executable = $1;
     my $parameters = $2;
     #warn "****'$worker_cmd'\n";
 
-    # TODO: add $rc_specific_submission_cmd_args
-
+    # Should $meadow_specific_submission_cmd_args rather be used in the job file like $rc_specific_submission_cmd_args ?
     open(my $fh, '|-', "condor_submit ${meadow_specific_submission_cmd_args}");
     print $fh "Universe = vanilla\n";
     print $fh "Executable = $executable\n";
@@ -206,6 +206,7 @@ sub submit_workers {
         print $fh "Error  = ${submit_log_subdir}/log_${rc_name}_\$(Cluster)_\$(Process).err\n";
         print $fh "Log    = ${submit_log_subdir}/log_${rc_name}_\$(Cluster)_\$(Process).log\n";
     }
+    print $fh $rc_specific_submission_cmd_args, "\n";
     print $fh "Queue $required_worker_count\n";
     close($fh);
     $? && die "Could not submit job(s): $!, $?";  # let's abort the beekeeper and let the user check the syntax
