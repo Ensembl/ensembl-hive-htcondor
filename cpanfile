@@ -1,2 +1,1 @@
-requires 'XML::Simple';
 
