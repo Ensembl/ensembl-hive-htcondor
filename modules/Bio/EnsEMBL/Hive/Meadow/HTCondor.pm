@@ -78,6 +78,13 @@ sub get_current_worker_process_id {
 }
 
 
+sub deregister_local_process {
+    my ($self) = @_;
+
+    delete $ENV{'_CONDOR_JOB_AD'};
+}
+
+
 sub status_of_all_our_workers { # returns an arrayref
     my $self                        = shift @_;
     my $meadow_users_of_interest    = shift @_;
