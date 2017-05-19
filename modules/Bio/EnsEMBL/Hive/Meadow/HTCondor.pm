@@ -21,10 +21,6 @@
     is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and limitations under the License.
 
-=head1 EXTERNAL CONTRIBUTION
-
-This module has been written in collaboration between Lel Eory (University of Edinburgh) and Javier Herrero (University College London) based on the LSF.pm module. Hence keeping the same LICENSE note.
-
 =head1 CONTACT
 
     Please subscribe to the Hive mailing list:  http://listserver.ebi.ac.uk/mailman/listinfo/ehive-users  to discuss Hive-related questions or to be notified of our updates
