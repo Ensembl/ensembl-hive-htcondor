@@ -32,6 +32,8 @@
 package Bio::EnsEMBL::Hive::Meadow::HTCondor;
 
 use strict;
+use warnings;
+
 
 use base ('Bio::EnsEMBL::Hive::Meadow');
 
