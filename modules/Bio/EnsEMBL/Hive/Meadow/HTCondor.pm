@@ -61,7 +61,7 @@ sub get_current_worker_process_id {
 
     my $job_description = $ENV{'_CONDOR_JOB_AD'};
 
-    if (-e $job_description) {
+    if ($job_description && -e $job_description) {
         my $cluster_id;     # Main job index
         my $proc_id;        # Sub-index for job arrays
         open(my $fh, '<', $job_description);
