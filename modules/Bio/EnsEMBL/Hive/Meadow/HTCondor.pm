@@ -34,11 +34,13 @@ package Bio::EnsEMBL::Hive::Meadow::HTCondor;
 use strict;
 use warnings;
 
+use File::Temp qw/tempfile/;
+
 
 use base ('Bio::EnsEMBL::Hive::Meadow');
 
 
-our $VERSION = '4.0';       # Semantic version of the Meadow interface:
+our $VERSION = '4.1';       # Semantic version of the Meadow interface:
                             #   change the Major version whenever an incompatible change is introduced,
                             #   change the Minor version whenever the interface is extended, but compatibility is retained.
 
@@ -192,7 +194,7 @@ sub kill_worker {
 
 
 
-sub submit_workers {
+sub submit_workers_return_meadow_pids {
     my ($self, $worker_cmd, $required_worker_count, $iteration, $rc_name, $rc_specific_submission_cmd_args, $submit_log_subdir) = @_;
 
     my $job_name                            = $self->job_array_common_name($rc_name, $iteration);
@@ -206,8 +208,8 @@ sub submit_workers {
     my $parameters = $2;
     #warn "****'$worker_cmd'\n";
 
-    # Should $meadow_specific_submission_cmd_args rather be used in the job file like $rc_specific_submission_cmd_args ?
-    open(my $fh, '|-', "condor_submit ${meadow_specific_submission_cmd_args}");
+    # The submission file
+    my ($fh, $filename) = tempfile(UNLINK => 1);
     print $fh "Universe = vanilla\n";
     print $fh "Executable = $executable\n";
     print $fh "Arguments = $parameters\n";
@@ -221,7 +223,27 @@ sub submit_workers {
     print $fh $rc_specific_submission_cmd_args, "\n";
     print $fh "Queue $required_worker_count\n";
     close($fh);
+
+    # Submit the workers and get their pids
+    # FIXME: Should $meadow_specific_submission_cmd_args rather be used in the job file like $rc_specific_submission_cmd_args ?
+    my $condor_jobid;
+    open(my $condor_submit_output_fh, '-|', "condor_submit ${meadow_specific_submission_cmd_args} $filename");
     $? && die "Could not submit job(s): $!, $?";  # let's abort the beekeeper and let the user check the syntax
+    while(my $line = <$condor_submit_output_fh>) {
+        # Expecting something like:
+        #> Submitting job(s).
+        #> 1 job(s) submitted to cluster 6.
+        if($line=~/^\d+ job\(s\) submitted to cluster (\d+)\./) {
+            $condor_jobid = $1;
+        }
+    }
+    close($condor_submit_output_fh);
+
+    if($condor_jobid) {
+        return [ map { $condor_jobid.'['.$_.']' } (0..($required_worker_count-1)) ];
+    } else {
+        die "Submission unsuccessful\n";
+    }
 }
 
 1;
