@@ -36,6 +36,12 @@ use strict;
 use base ('Bio::EnsEMBL::Hive::Meadow');
 
 
+our $VERSION = '4.0';       # Semantic version of the Meadow interface:
+                            #   change the Major version whenever an incompatible change is introduced,
+                            #   change the Minor version whenever the interface is extended, but compatibility is retained.
+
+
+
 sub name {  # also called to check for availability;
 
     # Query the name of the HTCondor master
