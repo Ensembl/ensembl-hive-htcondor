@@ -40,7 +40,7 @@ use File::Temp qw/tempfile/;
 use base ('Bio::EnsEMBL::Hive::Meadow');
 
 
-our $VERSION = '4.1';       # Semantic version of the Meadow interface:
+our $VERSION = '5.0';       # Semantic version of the Meadow interface:
                             #   change the Major version whenever an incompatible change is introduced,
                             #   change the Minor version whenever the interface is extended, but compatibility is retained.
 
@@ -148,21 +148,14 @@ sub _query_active_jobs {
         #warn "JOB: $_\n";
         my ($cluster_id, $proc_id, $owner, $job_status, $env) = split /\t/;
 
-        my $rc_name = '__unknown_rc_name__';
-
         if ($env =~ /EHIVE_SUBMISSION_NAME=([^;]+)/) {
             # skip the hive jobs that belong to another pipeline
             my $job_name = $1;
             #warn "with job name $job_name\n";
             next if (($job_name =~ /Hive-/) and (index($job_name, $job_name_prefix) != 0));
-
-            if ($job_name =~ /^\Q${job_name_prefix}\E(\S+)\-\d+(\[\d+\])?$/) {
-                $rc_name = $1;
-            }
         }
 
-        #warn "RC $rc_name\n";
-        push @jobs, ["${cluster_id}\[${proc_id}\]", $owner, $condor_job_status_index_2_hive_job_status{$job_status}, $rc_name];
+        push @jobs, ["${cluster_id}\[${proc_id}\]", $owner, $condor_job_status_index_2_hive_job_status{$job_status}];
     }
     close($fh);
     #use Data::Dumper;
