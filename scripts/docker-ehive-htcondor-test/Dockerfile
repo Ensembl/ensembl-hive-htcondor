@@ -6,9 +6,10 @@ FROM docker-htcondor
 
 # install required extra software
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update -y
-RUN apt-get install -y sqlite3 libdbd-sqlite3-perl libdbi-perl libcapture-tiny-perl libxml-simple-perl libdatetime-perl libjson-perl libtest-exception-perl perl-modules libtest-warn-perl
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update -y \
+    && apt-get install -y sqlite3 libdbd-sqlite3-perl libdbi-perl libcapture-tiny-perl libxml-simple-perl libdatetime-perl libjson-perl libtest-exception-perl perl-modules libtest-warn-perl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Location of the ensembl-hive and ensembl-hive-htcondor checkouts on the host
 ARG HIVE_CONDOR_LOCATION
