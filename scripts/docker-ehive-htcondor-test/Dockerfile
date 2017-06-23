@@ -4,9 +4,6 @@
 # Cloned and updated version of our docker-htcondor container
 FROM docker-htcondor
 
-# maintained by Ensembl
-MAINTAINER Ensembl
-
 # run everything as root to start with
 USER root
 
