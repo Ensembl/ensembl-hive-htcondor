@@ -20,6 +20,7 @@ RUN ln -s "$HIVE_CONDOR_LOCATION" /home/condoradmin/ensembl-hive-htcondor
 RUN ln -s "$EHIVE_LOCATION" /home/condoradmin/ensembl-hive
 RUN ln -s ensembl-hive-htcondor/scripts/docker-ehive-htcondor-test/setup_environment.sh /home/condoradmin/
 
-# start my_init on execution and pass bash to runit
+# start my_init on execution and pass login as sgeadmin, since root is not
+# allowed to submit jobs
 ENTRYPOINT ["/sbin/my_init", "--"]
-CMD ["/bin/bash"]
+CMD ["/bin/login", "-f", "condoradmin"]
