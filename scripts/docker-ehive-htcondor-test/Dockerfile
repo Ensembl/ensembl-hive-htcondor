@@ -4,9 +4,6 @@
 # Cloned and updated version of our docker-htcondor container
 FROM docker-htcondor
 
-# run everything as root to start with
-USER root
-
 # install required extra software
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
