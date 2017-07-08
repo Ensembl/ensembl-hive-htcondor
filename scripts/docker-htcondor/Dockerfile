@@ -3,25 +3,11 @@
 # Better than ubuntu
 FROM phusion/baseimage:0.9.18
 
-# maintained by Ensembl
-MAINTAINER Ensembl
-
-# run everything as root to start with
-USER root
-
 # set environment variables
 ENV HOME /root
 
 # regenerate host ssh keys
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-
-# add pin priority to some graphical packages to stop them installing and borking the build
-RUN echo "Package: xserver-xorg*\nPin: release *\nPin-Priority: -1" >> /etc/apt/preferences
-RUN echo "Package: unity*\nPin: release *\nPin-Priority: -1" >> /etc/apt/preferences
-RUN echo "Package: gnome*\nPin: release *\nPin-Priority: -1" >> /etc/apt/preferences
-
-# Uncomment this to make the build faster from abroad
-# RUN sed -i 's/\/archive.ubuntu.com/\/gb.archive.ubuntu.com/' /etc/apt/sources.list
 
 # install required software
 ARG DEBIAN_FRONTEND=noninteractive
