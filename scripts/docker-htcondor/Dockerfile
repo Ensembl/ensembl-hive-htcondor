@@ -1,9 +1,9 @@
-# Dockerfile to build a Condor-enabled container
+# Dockerfile to build a condor with a personal installatin of HTCondor
 
 # Better than ubuntu
 FROM phusion/baseimage:0.9.18
 
-# set environment variables
+# set HOME as it is missing from the base image
 ENV HOME /root
 
 # regenerate host ssh keys
