@@ -11,9 +11,9 @@ RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 # install required software
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get install -y man htcondor
+RUN apt-get update -y \
+    && apt-get install -y htcondor man \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # turn off password requirement for sudo groups users
 RUN sed -i "s/^\%sudo\tALL=(ALL:ALL)\sALL/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
@@ -26,9 +26,6 @@ RUN chmod ug+x /etc/my_init.d/01_docker_condor_init.sh
 
 # install Condor user
 RUN useradd -r -m -U -G sudo -d /home/condoradmin -s /bin/bash -c "Docker Condor Admin" condoradmin
-
-# clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # start my_init on execution and pass bash to runit
 ENTRYPOINT ["/sbin/my_init", "--"]
