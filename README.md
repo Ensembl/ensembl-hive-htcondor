@@ -19,42 +19,42 @@ checkouts are expected to be on the same branch name to function properly.
 When future stable versions of eHive will be released (named `version/2.5`
 etc) we'll create such branches here as well.
 
-The module is continuously tested under HTCondor 8.0.5 as shipped in
-Ubuntun 14.04 (Trusty). HTCondor is automatically configured for a
-"Personal HTCondor installation" in a docker image that can be found under
-[scripts/docker-htcondor/](scripts/docker-htcondor/).
-
 
 Testing the HTCondor meadow
 ---------------------------
 
-We ship two Dockerfile. One that merely consists of an Ubuntu image with
-HTCondor installed, and one that adds the dependencies needed for eHive.
-The former is useful to test HTCondor alone, the latter to test the eHive
-integration.
+The module is continuously tested under HTCondor 8.0.5 as shipped in
+Ubuntun 14.04 (Trusty) thanks to the Docker infrastructure.
+We ship several Dockerfiles, two of them being available on the Docker Hub.
 
-To build the images, you first need to edit the `HIVE_CONDOR_LOCATION` and
+1. [muffato/docker-htcondor](https://hub.docker.com/r/muffato/docker-htcondor/)
+   This container only adds HTCondor to a service-oriented Ubuntu.
+2. [muffato/ensembl-hive-htcondor](https://hub.docker.com/r/muffato/ensembl-hive-htcondor/)
+   This container extends muffato/docker-htcondor by adding the
+   ensembl-hive and ensembl-hive-htcondor repositories (and their
+   dependencies)
+3. [scripts/docker-ehive-htcondor-test/Dockerfile](scripts/docker-ehive-htcondor-test/Dockerfile)
+   defines a container that is more suitable for development and testing of
+   the present repository.
+
+To build the latter, you first need to edit the `HIVE_CONDOR_LOCATION` and
 `EHIVE_LOCATION` variables in
 `scripts/docker-ehive-htcondor-test/Dockerfile`.
-Then, run this from the root directory of this repo:
+The configuration assumes that you have existing checkouts of both
+ensembl-hive and ensembl-hive-htcondor on the host (somewhere under your
+home directory), and shares the host filesystem with the container.
+
+Run this from the root directory of this repo:
 
 ```
-docker build -t docker-htcondor scripts/docker-htcondor/
-./scripts/docker-ehive-htcondor-test/build_docker.sh
+# To build the image (only the first time)
+docker build -t docker-ehive-htcondor-test scripts/docker-ehive-htcondor-test/
+
+# To run a new container
+./scripts/docker-ehive-htcondor-test/start_docker.sh
+# which actually does this (run one or the other)
+docker run -it -v "$HOME:$HOME" docker-ehive-htcondor-test
 ```
-
-The images will be named `docker-htcondor` and `docker-ehive-htcondor-test`.
-Then instantiate a new container with:
-
-```
-./scripts/docker-ehive-htcondor-test/start_docker.sh    # run as normal user on your machine. Will start the image as root and login as condoradmin
-source setup_environment.sh                             # run as "condoradmin" on the image. Sets up $EHIVE_ROOT_DIR etc
-prove -rv ensembl-hive-htcondor/t                       # run as "condoradmin" on the image. Uses sqlite
-```
-
-Both `build_docker.sh` and `start_docker.sh` are simple wrappers around `docker
-build` and `docker run`, and you might as well run `docker` directly.
-
 
 Contributors
 ------------
