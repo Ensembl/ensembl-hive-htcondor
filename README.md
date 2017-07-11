@@ -59,7 +59,7 @@ build` and `docker run`, and you might as well run `docker` directly.
 Contributors
 ------------
 
-This module has been written by [Matthieu Muffato](https://github.com/muffato) (EMBL-EBI) based on the [SGE](https://github.com/Ensembl/ensembl-hive-sge) module.
+This module has been written by [Matthieu Muffato](https://github.com/muffato) (EMBL-EBI).
 
 
 Contact us
