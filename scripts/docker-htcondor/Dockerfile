@@ -29,4 +29,4 @@ RUN useradd -r -m -U -G sudo -d /home/condoradmin -s /bin/bash -c "Docker Condor
 
 # start my_init on execution and pass bash to runit
 ENTRYPOINT ["/sbin/my_init", "--"]
-CMD ["/bin/bash"]
+CMD ["/bin/login", "-f", "condoradmin"]
