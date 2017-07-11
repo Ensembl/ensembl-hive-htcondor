@@ -39,7 +39,7 @@ To build the images, you first need to edit the `HIVE_CONDOR_LOCATION` and
 Then, run this from the root directory of this repo:
 
 ```
-./scripts/docker-htcondor/build_docker.sh
+docker build -t docker-htcondor scripts/docker-htcondor/
 ./scripts/docker-ehive-htcondor-test/build_docker.sh
 ```
 
