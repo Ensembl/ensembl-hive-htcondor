@@ -16,24 +16,17 @@ RUN apt-get update -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Location of the ensembl-hive and ensembl-hive-htcondor checkouts on the host
-ARG HIVE_CONDOR_LOCATION
-ARG EHIVE_LOCATION
 
-# NOTE: We don't have access to $HIVE_CONDOR_LOCATION and $EHIVE_LOCATION
-# at build-time, so we can't run cpanm. We hope all the dependencies are
-# correctly installed with the above apt-get commands.
+RUN mkdir /repo \
+    && git clone -b master https://github.com/Ensembl/ensembl-hive.git /repo/ensembl-hive \
+    && git clone -b master https://github.com/muffato/ensembl-hive-htcondor.git /repo/ensembl-hive-htcondor
 
-# Place symlinks for ensembl-hive and ensembl-hive-htcondor in condoradmin's home directory
-RUN ln -s "$HIVE_CONDOR_LOCATION" /home/condoradmin/ensembl-hive-htcondor
-RUN ln -s "$EHIVE_LOCATION" /home/condoradmin/ensembl-hive
+# Install the missing dependencies (if any)
+RUN cpanm --installdeps --with-recommends /repo/ensembl-hive
+RUN cpanm --installdeps --with-recommends /repo/ensembl-hive-htcondor
 
-ENV EHIVE_ROOT_DIR "/home/condoradmin/ensembl-hive"
-ENV PATH "/home/condoradmin/ensembl-hive/scripts:$PATH"
-ENV PERL5LIB "/home/condoradmin/ensembl-hive/modules:/home/condoradmin/ensembl-hive-htcondor/modules:$PERL5LIB"
-ENV EHIVE_TEST_PIPELINE_URLS='sqlite:///ehive_test_pipeline_db'
-
-RUN mkdir /home/condoradmin/TEST
+ENV PATH "/repo/ensembl-hive/scripts:$PATH"
+ENV PERL5LIB "/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:$PERL5LIB"
 
 # Since the environment is set for the root user, we need to add the "-p"
 # option to transfer it to "condoradmin"
