@@ -25,6 +25,7 @@ RUN mkdir /repo \
 RUN cpanm --installdeps --with-recommends /repo/ensembl-hive
 RUN cpanm --installdeps --with-recommends /repo/ensembl-hive-htcondor
 
+ENV EHIVE_ROOT_DIR "/repo/ensembl-hive/"
 ENV PATH "/repo/ensembl-hive/scripts:$PATH"
 ENV PERL5LIB "/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:$PERL5LIB"
 
