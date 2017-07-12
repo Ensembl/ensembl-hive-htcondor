@@ -20,7 +20,7 @@ apt-get install -y cpanminus git build-essential \
 # It seems that non-root users cannot execute anything from /home/travis
 # so we copy the whole directory for the condoradmin user
 CONDORADMIN_HOME=/home/condoradmin
-cp -a /home/travis/build/Ensembl/ensembl-hive-htcondor $CONDORADMIN_HOME
+cp -a /home/travis/build/muffato/ensembl-hive-htcondor $CONDORADMIN_HOME
 CONDOR_CHECKOUT_LOCATION=$CONDORADMIN_HOME/ensembl-hive-htcondor
 chown -R condoradmin: $CONDOR_CHECKOUT_LOCATION
 
