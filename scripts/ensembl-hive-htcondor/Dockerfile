@@ -29,6 +29,6 @@ ENV EHIVE_ROOT_DIR "/repo/ensembl-hive/"
 ENV PATH "/repo/ensembl-hive/scripts:$PATH"
 ENV PERL5LIB "/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:$PERL5LIB"
 
-# Since the environment is set for the root user, we need to add the "-p"
-# option to transfer it to "condoradmin"
+# Since the environment is set for the root user, but root is not allowed
+# to submit jobs, we need to login as condoradmin and preserve the environment
 CMD ["/bin/login", "-p", "-f", "condoradmin"]

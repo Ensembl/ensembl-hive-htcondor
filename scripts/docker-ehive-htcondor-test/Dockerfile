@@ -34,5 +34,6 @@ ENV PERL5LIB "/home/condoradmin/ensembl-hive/modules:/home/condoradmin/ensembl-h
 ENV EHIVE_TEST_PIPELINE_URLS='sqlite:////home/condoradmin/'
 
 # Since the environment is set for the root user, we need to add the "-p"
-# option to transfer it to "condoradmin"
+# option to transfer it to "condoradmin" (only condoradmin is allowed to
+# submit jobs)
 CMD ["/bin/login", "-p", "-f", "condoradmin"]
