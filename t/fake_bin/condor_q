@@ -32,8 +32,6 @@ if [ "$lastarg" = "" ];
 then
   echo "$cq"
 else
-	echo "$cq" | awk "\$3==\"$lastarg\" || (\$1 \".\" \$2)==\"$lastarg\"" 1>&2 # {print} {pid=(\$1 \"[\" \$2 \"]\")} pid==\"$lastarg\" {print}"
-	echo "$cq" | awk "\$3==\"$lastarg\" || (\$1 \".\" \$2)==\"$lastarg\"" # {print} {pid=(\$1 \"[\" \$2 \"]\")} pid==\"$lastarg\" {print}"
-  #echo "$cq" | awk "\$3==\"$lastarg\" {print} {pid=(\$1 \"[\" \$2 \"]\")} pid==\"$lastarg\" {print}"
+  echo "$cq" | awk "\$3==\"$lastarg\" || (\$1 \".\" \$2)==\"$lastarg\""
 fi
 
