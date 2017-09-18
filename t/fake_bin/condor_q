@@ -1,0 +1,39 @@
+#!/bin/bash
+
+read -r -d '' cq << "EOF"
+1	0	condoradmin	1	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-1;LOGNAME=condoradmin
+2	0	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-1;LOGNAME=condoradmin
+3	0	condoradmin	4	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=tracking_homo_sapiens_funcgen_81_38_hive;LOGNAME=condoradmin
+3	1	condoradmin	1	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=tracking_homo_sapiens_funcgen_81_38_hive;LOGNAME=condoradmin
+4	1	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-1;LOGNAME=condoradmin
+5	1	condoradmin	3	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-1;LOGNAME=condoradmin
+6	1	otheruser	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-1;LOGNAME=condoradmin
+6	0	otheruser	1	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+7	0	otheruser	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+8	0	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+9	0	condoradmin	5	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+10	0	condoradmin	6	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	0	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	1	condoradmin	1	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	2	condoradmin	1	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	3	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	4	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	5	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	6	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+11	7	condoradmin	2	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;PERL5LIB=/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:;SHELL=/bin/bash;PWD=/home/condoradmin;EHIVE_ROOT_DIR=/repo/ensembl-hive/;USER=condoradmin;HOME=/home/condoradmin;TERM=xterm;EHIVE_SUBMISSION_NAME=long_mult-Hive-default-2;LOGNAME=condoradmin
+EOF
+
+received="$*"
+#lastarg=${received//^.*Env//}
+lastarg=$(echo "$received" | sed 's/^.*Env\s*//')
+
+echo $lastarg >> RL
+if [ "$lastarg" = "" ];
+then
+  echo "$cq"
+else
+	echo "$cq" | awk "\$3==\"$lastarg\" || (\$1 \".\" \$2)==\"$lastarg\"" 1>&2 # {print} {pid=(\$1 \"[\" \$2 \"]\")} pid==\"$lastarg\" {print}"
+	echo "$cq" | awk "\$3==\"$lastarg\" || (\$1 \".\" \$2)==\"$lastarg\"" # {print} {pid=(\$1 \"[\" \$2 \"]\")} pid==\"$lastarg\" {print}"
+  #echo "$cq" | awk "\$3==\"$lastarg\" {print} {pid=(\$1 \"[\" \$2 \"]\")} pid==\"$lastarg\" {print}"
+fi
+

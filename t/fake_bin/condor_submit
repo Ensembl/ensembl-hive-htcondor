@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if cmp -s "$1" "$EHIVE_EXPECTED_JOB_AD"
+then
+    echo "Submitting job(s)."
+    grep "^Queue" "$1" | awk '{print $2, "job(s) submitted to cluster 12345."}'
+    exit 0
+else
+    diff "$1" "$EHIVE_EXPECTED_JOB_AD" 1>&2
+    exit 1
+fi
+

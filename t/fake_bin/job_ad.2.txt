@@ -1,0 +1,10 @@
+Universe = vanilla
+Executable = /worker_cmd/
+Arguments = params
+Environment = EHIVE_SUBMISSION_NAME=long_mult-Hive-/resource_class/-56
+GetEnv = True
+Output = TEST/log_/resource_class/_$(Cluster)_$(Process).out
+Error  = TEST/log_/resource_class/_$(Cluster)_$(Process).err
+Log    = TEST/log_/resource_class/_$(Cluster)_$(Process).log
+/rc_args/
+Queue 4
