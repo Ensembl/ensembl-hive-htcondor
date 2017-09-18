@@ -32,6 +32,7 @@ ENV EHIVE_ROOT_DIR "/home/condoradmin/ensembl-hive"
 ENV PATH "/home/condoradmin/ensembl-hive/scripts:$PATH"
 ENV PERL5LIB "/home/condoradmin/ensembl-hive/modules:/home/condoradmin/ensembl-hive-htcondor/modules:$PERL5LIB"
 ENV EHIVE_TEST_PIPELINE_URLS='sqlite:////home/condoradmin/'
+ENV EHIVE_MEADOW_TO_TEST "HTCondor"
 
 # Since the environment is set for the root user, we need to add the "-p"
 # option to transfer it to "condoradmin" (only condoradmin is allowed to
