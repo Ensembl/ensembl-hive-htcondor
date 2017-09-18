@@ -37,6 +37,7 @@ RUN buildDeps=' \
 ENV EHIVE_ROOT_DIR "/repo/ensembl-hive/"
 ENV PATH "/repo/ensembl-hive/scripts:$PATH"
 ENV PERL5LIB "/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:$PERL5LIB"
+ENV EHIVE_TEST_PIPELINE_URLS "sqlite:////home/condoradmin/"
 
 # Since the environment is set for the root user, but root is not allowed
 # to submit jobs, we need to login as condoradmin and preserve the environment
