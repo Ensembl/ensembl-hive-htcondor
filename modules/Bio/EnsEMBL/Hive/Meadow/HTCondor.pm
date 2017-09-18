@@ -36,6 +36,7 @@ use warnings;
 
 use File::Temp qw/tempfile/;
 
+use Bio::EnsEMBL::Hive::Utils ('whoami');
 
 use base ('Bio::EnsEMBL::Hive::Meadow');
 
@@ -168,10 +169,11 @@ sub check_worker_is_alive_and_mine {
     my ($self, $worker) = @_;
 
     my $process_id = $worker->process_id();
+    my $this_user  = whoami();
     my $condor_id  = $self->_hive_process_id_2_condor_id($process_id);
 
     my $matches = $self->_query_active_jobs(undef, $condor_id);
-    return scalar(@$matches);
+    return scalar(grep {$_->[1] eq $this_user} @$matches);
 }
 
 
