@@ -149,6 +149,11 @@ sub _query_active_jobs {
         #warn "JOB: $_\n";
         my ($cluster_id, $proc_id, $owner, $job_status, $env) = split /\t/;
 
+        unless (defined $env) {
+            warn "Cannot parse this line: $_";
+            next;
+        }
+
         if ($env =~ /EHIVE_SUBMISSION_NAME=([^;]+)/) {
             # skip the hive jobs that belong to another pipeline
             my $job_name = $1;
