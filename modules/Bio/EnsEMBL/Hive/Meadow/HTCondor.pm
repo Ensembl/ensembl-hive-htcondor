@@ -195,10 +195,15 @@ sub submit_workers_return_meadow_pids {
 
     #$submit_log_subdir = 'TEST';
 
+    my ($executable, $parameters);
     # Assuming the executable has no space in it
-    $worker_cmd =~ /^(\S+)\s+(.*)/;
-    my $executable = $1;
-    my $parameters = $2;
+    if ($worker_cmd =~ /^(\S+)\s+(.*)/) {
+        $executable = $1;
+        $parameters = $2;
+    } else {
+        $executable = $worker_cmd;
+        $parameters = '';
+    }
     #warn "****'$worker_cmd'\n";
 
     # The submission file
