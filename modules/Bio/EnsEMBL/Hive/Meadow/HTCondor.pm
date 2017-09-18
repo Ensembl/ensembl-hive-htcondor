@@ -154,7 +154,7 @@ sub _query_active_jobs {
             next;
         }
 
-        if ($env =~ /EHIVE_SUBMISSION_NAME=([^;]+)/) {
+        if (($env =~ /EHIVE_SUBMISSION_NAME=([^;]+)/) && $job_name_prefix) {
             # skip the hive jobs that belong to another pipeline
             my $job_name = $1;
             #warn "with job name $job_name\n";
