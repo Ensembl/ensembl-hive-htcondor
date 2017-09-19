@@ -8,12 +8,10 @@ services:
   - docker
 
 install:
-    - pushd scripts/docker-htcondor
-    - docker build -t docker-htcondor .
-    - popd
+    - docker pull muffato/docker-htcondor
     - git clone --depth 1 --branch master https://github.com/Ensembl/ensembl-hive
     - env
 
 script:
-    - docker run -v /home/travis:/home/travis docker-htcondor /home/travis/build/muffato/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
+    - docker run -v /home/travis:/home/travis muffato/docker-htcondor /home/travis/build/muffato/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
 
