@@ -22,8 +22,6 @@ RUN sed -i "s/^\%sudo\tALL=(ALL:ALL)\sALL/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/su
 COPY docker_condor_init.sh /etc/my_init.d/01_docker_condor_init.sh
 COPY condor_config.local /etc/condor/condor_config.local
 
-RUN chmod ug+x /etc/my_init.d/01_docker_condor_init.sh
-
 # install Condor user
 RUN useradd -r -m -U -G sudo -d /home/condoradmin -s /bin/bash -c "Docker Condor Admin" condoradmin
 
