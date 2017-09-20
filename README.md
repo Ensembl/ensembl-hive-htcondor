@@ -25,7 +25,7 @@ Testing the HTCondor meadow
 
 The module is continuously tested under HTCondor 8.0.5 as shipped in
 Ubuntun 14.04 (Trusty) thanks to the Docker infrastructure.
-We ship several Dockerfiles, two of them being available on the Docker Hub.
+We provide two Docker images:
 
 1. [muffato/docker-htcondor](https://hub.docker.com/r/muffato/docker-htcondor/)
    This container only adds HTCondor to a service-oriented Ubuntu.
@@ -33,28 +33,12 @@ We ship several Dockerfiles, two of them being available on the Docker Hub.
    This container extends muffato/docker-htcondor by adding the
    ensembl-hive and ensembl-hive-htcondor repositories (and their
    dependencies)
-3. [scripts/docker-ehive-htcondor-test/Dockerfile](scripts/docker-ehive-htcondor-test/Dockerfile)
-   defines a container that is more suitable for development and testing of
-   the present repository.
 
-To build the latter, you first need to edit the `HIVE_CONDOR_LOCATION` and
-`EHIVE_LOCATION` variables in
-`scripts/docker-ehive-htcondor-test/Dockerfile`.
-The configuration assumes that you have existing checkouts of both
-ensembl-hive and ensembl-hive-htcondor on the host (somewhere under your
-home directory), and shares the host filesystem with the container.
-
-Run this from the root directory of this repo:
-
-```
-# To build the image (only the first time)
-docker build -t docker-ehive-htcondor-test scripts/docker-ehive-htcondor-test/
-
-# To run a new container
-./scripts/docker-ehive-htcondor-test/start_docker.sh
-# which actually does this (run one or the other)
-docker run -it -v "$HOME:$HOME" docker-ehive-htcondor-test
-```
+The latter can be used to test new versions of the code by running
+``scripts/ensembl-hive-htcondor/start_test_docker.sh``.  You first need to
+edit the `HIVE_CONDOR_LOCATION` and `EHIVE_LOCATION` variables in it.
+The script will start a new ``muffato/ensembl-hive-htcondor`` container
+with your own copies of ensembl-hive and ensembl-hive-htcondor mounted.
 
 Contributors
 ------------
