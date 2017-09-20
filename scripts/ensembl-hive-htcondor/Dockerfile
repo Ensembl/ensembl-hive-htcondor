@@ -4,35 +4,18 @@
 # Cloned and updated version of our docker-htcondor container
 FROM muffato/docker-htcondor
 
-# install required extra software
+# Install git
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update -y \
-                          # Taken from ensembl-hive's Dockerfile
-    && apt-get install -y curl git \
-                          sqlite3 libdbd-sqlite3-perl postgresql-client libdbd-pg-perl mysql-client libdbd-mysql-perl libdbi-perl \
-                          libcapture-tiny-perl libdatetime-perl libhtml-parser-perl libjson-perl libproc-daemon-perl \
-                          libtest-exception-perl libtest-simple-perl libtest-warn-perl libtest-warnings-perl libtest-file-contents-perl libtest-perl-critic-perl libgraphviz-perl \
-                          libgetopt-argvfile-perl libchart-gnuplot-perl libbsd-resource-perl \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update -y && apt-get install -y git && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
+# Clone the repos
 RUN mkdir /repo \
     && git clone -b master https://github.com/Ensembl/ensembl-hive.git /repo/ensembl-hive \
     && git clone -b master https://github.com/muffato/ensembl-hive-htcondor.git /repo/ensembl-hive-htcondor
 
-
-# Install the missing dependencies (if any)
-RUN buildDeps=' \
-      cpanminus \
-      build-essential \
-    ' \
-    && apt-get update -y \
-    && apt-get install -y $buildDeps \
-    && rm -rf /var/lib/apt/lists/* \
-    && cpanm --installdeps --with-recommends /repo/ensembl-hive \
-    && cpanm --installdeps --with-recommends /repo/ensembl-hive-htcondor \
-    && apt-get purge -y --auto-remove $buildDeps
+# Install all the dependencies
+RUN /repo/ensembl-hive/docker/setup_os.Ubuntu-14.04.sh \
+    && /repo/ensembl-hive/docker/setup_cpan.Ubuntu-14.04.sh /repo/ensembl-hive /repo/ensembl-hive-htcondor
 
 ENV EHIVE_ROOT_DIR "/repo/ensembl-hive/"
 ENV PATH "/repo/ensembl-hive/scripts:$PATH"
