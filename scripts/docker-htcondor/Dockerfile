@@ -15,15 +15,13 @@ RUN apt-get update -y \
     && apt-get install -y htcondor man \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# turn off password requirement for sudo groups users
-RUN sed -i "s/^\%sudo\tALL=(ALL:ALL)\sALL/%sudo ALL=(ALL) NOPASSWD:ALL/" /etc/sudoers
-
 # add files to container from local directory
 COPY docker_condor_init.sh /etc/my_init.d/01_docker_condor_init.sh
 COPY condor_config.local /etc/condor/condor_config.local
 
-# install Condor user
-RUN useradd -r -m -U -G sudo -d /home/condoradmin -s /bin/bash -c "Docker Condor Admin" condoradmin
+# install Condor user with password-less sudo access
+RUN useradd -r -m -U -G sudo -d /home/condoradmin -s /bin/bash -c "Docker Condor Admin" condoradmin \
+    && echo "condoradmin ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # start my_init on execution and pass bash to runit
 ENTRYPOINT ["/sbin/my_init", "--"]
