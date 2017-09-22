@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-    Bio::EnsEMBL::Hive::Meadow::HTCondor
+Bio::EnsEMBL::Hive::Meadow::HTCondor
 
 =head1 DESCRIPTION
 
