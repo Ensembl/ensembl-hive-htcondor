@@ -35,10 +35,16 @@ We provide two Docker images:
    dependencies)
 
 The latter can be used to test new versions of the code by running
-``scripts/ensembl-hive-htcondor/start_test_docker.sh``.  You first need to
-edit the `HIVE_CONDOR_LOCATION` and `EHIVE_LOCATION` variables in it.
-The script will start a new ``muffato/ensembl-hive-htcondor`` container
-with your own copies of ensembl-hive and ensembl-hive-htcondor mounted.
+``scripts/ensembl-hive-htcondor/start_test_docker.sh``. The script
+will start a new ``muffato/ensembl-hive-htcondor`` container with
+your own copies of ensembl-hive and ensembl-hive-htcondor mounted.
+
+```
+scripts/ensembl-hive-htcondor/start_test_docker.sh /path/to/your/ensembl-hive /path/to/your/ensembl-hive-htcondor name_of_docker_image
+
+```
+
+The last argument can be skipped and defaults to `muffato/ensembl-hive-htcondor`.
 
 Contributors
 ------------
