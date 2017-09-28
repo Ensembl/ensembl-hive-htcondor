@@ -4,17 +4,17 @@ This container is a _Personal installation_ (i.e. single node) of HTCondor.  The
 As _root_ is not allowed to submit jobs to HTCondor, the default user is _condoradmin_ (which has _sudo_-capabilities). To use it, just do:
 
 ```
-docker run -it muffato/docker-htcondor
+docker run -it ensemblorg/docker-htcondor
 ```
 
 Otherwise, to open a _root_-session, do
 
 ```
-docker run -it muffato/docker-htcondor /bin/bash
+docker run -it ensemblorg/docker-htcondor /bin/bash
 ```
 
 Contributors
 ------------
 
-This module has been written by [Matthieu Muffato](https://github.com/muffato) (EMBL-EBI).
+This module has been written by [Matthieu Muffato](https://github.com/ensemblorg) (EMBL-EBI).
 

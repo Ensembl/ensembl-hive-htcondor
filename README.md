@@ -2,7 +2,7 @@
 HTCondor Meadow for eHive
 =========================
 
-[![Build Status](https://travis-ci.org/muffato/ensembl-hive-htcondor.svg?branch=master)](https://travis-ci.org/muffato/ensembl-hive-htcondor)
+[![Build Status](https://travis-ci.org/Ensembl/ensembl-hive-htcondor.svg?branch=master)](https://travis-ci.org/Ensembl/ensembl-hive-htcondor)
 
 [eHive](https://github.com/Ensembl/ensembl-hive) is a system for running computation pipelines on distributed computing resources - clusters, farms or grids.
 This repository is the implementation of eHive's _Meadow_ interface for the [HTCondor](https://research.cs.wisc.edu/htcondor/) job scheduler.
@@ -27,16 +27,16 @@ The module is continuously tested under HTCondor 8.0.5 as shipped in
 Ubuntun 14.04 (Trusty) thanks to the Docker infrastructure.
 We provide two Docker images:
 
-1. [muffato/docker-htcondor](https://hub.docker.com/r/muffato/docker-htcondor/)
+1. [ensemblorg/docker-htcondor](https://hub.docker.com/r/ensemblorg/docker-htcondor/)
    This container only adds HTCondor to a service-oriented Ubuntu.
-2. [muffato/ensembl-hive-htcondor](https://hub.docker.com/r/muffato/ensembl-hive-htcondor/)
-   This container extends muffato/docker-htcondor by adding the
+2. [ensemblorg/ensembl-hive-htcondor](https://hub.docker.com/r/ensemblorg/ensembl-hive-htcondor/)
+   This container extends ensemblorg/docker-htcondor by adding the
    ensembl-hive and ensembl-hive-htcondor repositories (and their
    dependencies)
 
 The latter can be used to test new versions of the code by running
 ``scripts/ensembl-hive-htcondor/start_test_docker.sh``. The script
-will start a new ``muffato/ensembl-hive-htcondor`` container with
+will start a new ``ensemblorg/ensembl-hive-htcondor`` container with
 your own copies of ensembl-hive and ensembl-hive-htcondor mounted.
 
 ```
@@ -44,12 +44,12 @@ scripts/ensembl-hive-htcondor/start_test_docker.sh /path/to/your/ensembl-hive /p
 
 ```
 
-The last argument can be skipped and defaults to `muffato/ensembl-hive-htcondor`.
+The last argument can be skipped and defaults to `ensemblorg/ensembl-hive-htcondor`.
 
 Contributors
 ------------
 
-This module has been written by [Matthieu Muffato](https://github.com/muffato) (EMBL-EBI).
+This module has been written by [Matthieu Muffato](https://github.com/ensemblorg) (EMBL-EBI).
 
 
 Contact us

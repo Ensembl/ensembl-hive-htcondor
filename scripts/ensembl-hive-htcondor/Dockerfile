@@ -2,7 +2,7 @@
 # run and test eHive
 
 # Cloned and updated version of our docker-htcondor container
-FROM muffato/docker-htcondor
+FROM ensemblorg/docker-htcondor
 
 # Install git
 ARG DEBIAN_FRONTEND=noninteractive
@@ -11,7 +11,7 @@ RUN apt-get update -y && apt-get install -y git && apt-get clean && rm -rf /var/
 # Clone the repos
 RUN mkdir /repo \
     && git clone -b master https://github.com/Ensembl/ensembl-hive.git /repo/ensembl-hive \
-    && git clone -b master https://github.com/muffato/ensembl-hive-htcondor.git /repo/ensembl-hive-htcondor
+    && git clone -b master https://github.com/Ensembl/ensembl-hive-htcondor.git /repo/ensembl-hive-htcondor
 
 # Install all the dependencies
 RUN /repo/ensembl-hive/docker/setup_os.Ubuntu-14.04.sh \
