@@ -18,8 +18,7 @@ HIVE_CHECKOUT_LOCATION=$CONDOR_CHECKOUT_LOCATION/ensembl-hive
 
 # Install extra packages inside the container
 export DEBIAN_FRONTEND=noninteractive
-$HIVE_CHECKOUT_LOCATION/docker/setup_os.Ubuntu-16.04.sh
-$HIVE_CHECKOUT_LOCATION/docker/setup_cpan.Ubuntu-16.04.sh $HIVE_CHECKOUT_LOCATION $CONDOR_CHECKOUT_LOCATION
+$HIVE_CHECKOUT_LOCATION/docker/setup_cpan.Ubuntu-16.04.sh $CONDOR_CHECKOUT_LOCATION
 
 sudo --login -u condoradmin $CONDOR_CHECKOUT_LOCATION/travisci/run_tests.sh
 
