@@ -143,11 +143,11 @@ sub _query_active_jobs {
     }
 
     #warn "CMD: ", join(' ', @cmd), "\n";
-    #warn "PREFIX: $job_name_prefix\n";
+    #warn "PREFIX: ", $job_name_prefix||"<NA>", "\n";
     my @jobs;
     open(my $fh, '-|', @cmd);
     while (<$fh>) {
-        #warn "JOB: $_\n";
+        #warn "JOB: $_";
         my ($cluster_id, $proc_id, $owner, $job_status, $env) = split /\t/;
 
         unless (defined $env) {
