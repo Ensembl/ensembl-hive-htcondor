@@ -34,6 +34,7 @@ package Bio::EnsEMBL::Hive::Meadow::HTCondor;
 use strict;
 use warnings;
 
+use Capture::Tiny 'tee_stdout';
 use File::Temp qw/tempfile/;
 
 use Bio::EnsEMBL::Hive::Utils ('whoami');
@@ -231,18 +232,18 @@ sub submit_workers_return_meadow_pids {
 
     # Submit the workers and get their pids
     # FIXME: Should $meadow_specific_submission_cmd_args rather be used in the job file like $rc_specific_submission_cmd_args ?
+    my $condor_submit_output = tee_stdout {
+        system("condor_submit ${meadow_specific_submission_cmd_args} $filename");
+        $? && die "Could not submit job(s): $!, $?";  # let's abort the beekeeper and let the user check the syntax
+    };
+
+    # Expecting something like:
+    #> Submitting job(s).
+    #> 1 job(s) submitted to cluster 6.
     my $condor_jobid;
-    open(my $condor_submit_output_fh, '-|', "condor_submit ${meadow_specific_submission_cmd_args} $filename");
-    $? && die "Could not submit job(s): $!, $?";  # let's abort the beekeeper and let the user check the syntax
-    while(my $line = <$condor_submit_output_fh>) {
-        # Expecting something like:
-        #> Submitting job(s).
-        #> 1 job(s) submitted to cluster 6.
-        if($line=~/^\d+ job\(s\) submitted to cluster (\d+)\./) {
-            $condor_jobid = $1;
-        }
+    if($condor_submit_output=~/^\d+ job\(s\) submitted to cluster (\d+)\./m) {
+        $condor_jobid = $1;
     }
-    close($condor_submit_output_fh);
 
     if($condor_jobid) {
         return [ map { $condor_jobid.'['.$_.']' } (0..($required_worker_count-1)) ];
