@@ -1,7 +1,8 @@
 Universe = vanilla
 Executable = /worker_cmd/
 Arguments = params
-Environment = EHIVE_SUBMISSION_NAME=long_mult-Hive-/resource_class/-56
 GetEnv = True
 /rc_args/
++IsEHiveJob = True
++eHiveJobName = "long_mult-Hive-/resource_class/-56"
 Queue 4
