@@ -132,7 +132,8 @@ my %condor_job_status_index_2_hive_job_status = (
 sub _query_active_jobs {
     my ($self, $user, $worker_id, $job_name_prefix) = @_;
 
-    my @cmd = qw(condor_q -format %d\t ClusterId -format %d\t ProcId -format %s\t Owner -format %s\t JobStatus -format %s\n Env);
+    # \n is printed separately in case eHiveJobName is not defined
+    my @cmd = qw(condor_q -format %d\t ClusterId -format %d\t ProcId -format %s\t Owner -format %s\t JobStatus -format %s eHiveJobName -format \n '');
 
     if ($user) {
         push @cmd, $user;
@@ -148,16 +149,10 @@ sub _query_active_jobs {
     open(my $fh, '-|', @cmd);
     while (<$fh>) {
         #warn "JOB: $_";
-        my ($cluster_id, $proc_id, $owner, $job_status, $env) = split /\t/;
+        my ($cluster_id, $proc_id, $owner, $job_status, $job_name) = split /\t/;
 
-        unless (defined $env) {
-            warn "Cannot parse this line: $_";
-            next;
-        }
-
-        if (($env =~ /EHIVE_SUBMISSION_NAME=([^;]+)/) && $job_name_prefix) {
+        if ($job_name_prefix) {
             # skip the hive jobs that belong to another pipeline
-            my $job_name = $1;
             #warn "with job name $job_name\n";
             next if (($job_name =~ /Hive-/) and (index($job_name, $job_name_prefix) != 0));
         }
@@ -219,7 +214,6 @@ sub submit_workers_return_meadow_pids {
     print $fh "Universe = vanilla\n";
     print $fh "Executable = $executable\n";
     print $fh "Arguments = $parameters\n";
-    print $fh "Environment = EHIVE_SUBMISSION_NAME=$job_name\n";
     print $fh "GetEnv = True\n";
     if ($submit_log_subdir) {
         print $fh "Output = ${submit_log_subdir}/log_${rc_name}_\$(Cluster)_\$(Process).out\n";
@@ -227,6 +221,8 @@ sub submit_workers_return_meadow_pids {
         print $fh "Log    = ${submit_log_subdir}/log_${rc_name}_\$(Cluster)_\$(Process).log\n";
     }
     print $fh $rc_specific_submission_cmd_args, "\n";
+    print $fh "+IsEHiveJob = True\n";
+    print $fh "+eHiveJobName = \"$job_name\"\n";
     print $fh "Queue $required_worker_count\n";
     close($fh);
 
