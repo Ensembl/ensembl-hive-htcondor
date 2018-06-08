@@ -2,7 +2,7 @@
 HTCondor Meadow for eHive
 =========================
 
-[![Build Status](https://travis-ci.org/Ensembl/ensembl-hive-htcondor.svg?branch=master)](https://travis-ci.org/Ensembl/ensembl-hive-htcondor)
+[![Build Status](https://travis-ci.org/Ensembl/ensembl-hive-htcondor.svg?branch=version/2.5)](https://travis-ci.org/Ensembl/ensembl-hive-htcondor)
 
 [eHive](https://github.com/Ensembl/ensembl-hive) is a system for running computation pipelines on distributed computing resources - clusters, farms or grids.
 This repository is the implementation of eHive's _Meadow_ interface for the [HTCondor](https://research.cs.wisc.edu/htcondor/) job scheduler.
