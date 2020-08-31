@@ -1,6 +1,6 @@
 name: Publish ensembl-hive-htcondor image
 on:
-  workflow_dispatch
+  workflow_dispatch:
   push:
     paths:
       - scripts/ensembl-hive-htcondor/**
