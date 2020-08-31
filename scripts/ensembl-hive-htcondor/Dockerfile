@@ -2,7 +2,7 @@
 # run and test eHive
 
 # Cloned and updated version of our docker-htcondor container
-FROM ensemblorg/docker-htcondor
+FROM docker.pkg.github.com/muffato/ensembl-hive-htcondor/docker-htcondor
 
 # Install git
 ARG DEBIAN_FRONTEND=noninteractive
