@@ -14,12 +14,7 @@ jobs:
           registry: docker.pkg.github.com
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-  run_tests:
-    name: Run the ensembl-hive-htcondor test suite
-    runs-on: ubuntu-latest
-    container:
-      image: docker.pkg.github.com/muffato/ensembl-hive-htcondor/ensembl-hive-htcondor:version-2.5
-      options: "-v $GITHUB_WORKSPACE:/home/travis/build/Ensembl/ensembl-hive-htcondor"
-    steps:
-      - name: Run
-        run: /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
+      - name: Pull the Docker image
+        run: docker pull docker.pkg.github.com/muffato/ensembl-hive-htcondor/ensembl-hive-htcondor:version-2.5
+      - name: Run the test suite
+        run: docker run -v $GITHUB_WORKSPACE:/home/travis/build/Ensembl/ensembl-hive-htcondor /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
