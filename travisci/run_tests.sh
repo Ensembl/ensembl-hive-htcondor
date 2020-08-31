@@ -8,13 +8,11 @@ set -e
 
 echo "DEBUG: Environment of $0"; env; id; echo "END_DEBUG"
 
-#BUILD_DIR=/home/condoradmin/ensembl-hive-htcondor
-BUILD_DIR=/home/travis/build/Ensembl/ensembl-hive-htcondor
-#cd $BUILD_DIR
+CONDOR_CHECKOUT_LOCATION=/repo/ensembl-hive-htcondor
 export EHIVE_ROOT_DIR=/repo/ensembl-hive
-export PERL5LIB=$EHIVE_ROOT_DIR/modules:$BUILD_DIR/modules
+export PERL5LIB=$EHIVE_ROOT_DIR/modules:$CONDOR_CHECKOUT_LOCATION/modules
 export EHIVE_TEST_PIPELINE_URLS='sqlite:///ehive_test_pipeline_db'
 export EHIVE_MEADOW_TO_TEST=HTCondor
 
-prove -rv --ext .t --ext .mt $BUILD_DIR/t "$EHIVE_ROOT_DIR/t/04.meadow/meadow-longmult.mt"
+prove -rv --ext .t --ext .mt $CONDOR_CHECKOUT_LOCATION/t "$EHIVE_ROOT_DIR/t/04.meadow/meadow-longmult.mt"
 
