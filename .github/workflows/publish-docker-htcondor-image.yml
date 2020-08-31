@@ -6,13 +6,13 @@ on:
       - scripts/docker-htcondor/**
 
 jobs:
-  push_to_registry:
-    name: Push docker-htcondor image to GitHub Packages
+  build_and_push_to_registry:
+    name: Build and push docker-htcondor image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Push to GitHub Packages
+      - name: Build and push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
           username: ${{ github.actor }}
