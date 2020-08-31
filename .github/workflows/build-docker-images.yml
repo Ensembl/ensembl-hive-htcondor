@@ -17,6 +17,3 @@ jobs:
           registry: docker.pkg.github.com
           repository: muffato/ensembl-hive-htcondor/docker-htcondor
           tags: latest
-          tag_with_ref: true
-
-
