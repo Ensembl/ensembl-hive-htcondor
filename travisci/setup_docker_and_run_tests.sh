@@ -8,12 +8,13 @@ set -e
 
 echo "DEBUG: Environment of $0"; env; id; echo "END_DEBUG"
 
+CONDOR_CHECKOUT_LOCATION=/home/travis/build/Ensembl/ensembl-hive-htcondor
 # It seems that non-root users cannot execute anything from /home/travis
 # so we copy the whole directory for the condoradmin user
-CONDORADMIN_HOME=/home/condoradmin
-cp -a /home/travis/build/Ensembl/ensembl-hive-htcondor $CONDORADMIN_HOME
-CONDOR_CHECKOUT_LOCATION=$CONDORADMIN_HOME/ensembl-hive-htcondor
-chown -R condoradmin: $CONDOR_CHECKOUT_LOCATION
+#CONDORADMIN_HOME=/home/condoradmin
+#cp -a /home/travis/build/Ensembl/ensembl-hive-htcondor $CONDORADMIN_HOME
+#CONDOR_CHECKOUT_LOCATION=$CONDORADMIN_HOME/ensembl-hive-htcondor
+#chown -R condoradmin: $CONDOR_CHECKOUT_LOCATION
 
 # Install extra packages inside the container
 export DEBIAN_FRONTEND=noninteractive
