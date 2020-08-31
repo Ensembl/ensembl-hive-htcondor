@@ -1,6 +1,9 @@
 name: Publish ensembl-hive-htcondor image
 on:
-  push
+  push:
+    paths:
+      - scripts/ensembl-hive-htcondor/**
+
 jobs:
   push_to_registry:
     name: Push ensembl-hive-htcondor image to GitHub Packages

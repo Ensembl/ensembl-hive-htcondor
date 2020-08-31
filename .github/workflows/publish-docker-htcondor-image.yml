@@ -1,6 +1,9 @@
 name: Publish docker-htcondor image
 on:
-  push
+  push:
+    paths:
+      - scripts/docker-htcondor/**
+
 jobs:
   push_to_registry:
     name: Push docker-htcondor image to GitHub Packages
