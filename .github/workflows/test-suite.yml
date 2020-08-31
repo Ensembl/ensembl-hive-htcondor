@@ -3,7 +3,7 @@ on:
   workflow_dispatch
 
 jobs:
-  login:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,4 +17,4 @@ jobs:
       - name: Pull the Docker image
         run: docker pull docker.pkg.github.com/muffato/ensembl-hive-htcondor/ensembl-hive-htcondor:version-2.5
       - name: Run the test suite
-        run: docker run -v $GITHUB_WORKSPACE:/home/travis/build/Ensembl/ensembl-hive-htcondor /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
+        run: docker run -v $GITHUB_WORKSPACE:/home/travis/build/Ensembl/ensembl-hive-htcondor docker.pkg.github.com/muffato/ensembl-hive-htcondor/ensembl-hive-htcondor:version-2.5 /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
