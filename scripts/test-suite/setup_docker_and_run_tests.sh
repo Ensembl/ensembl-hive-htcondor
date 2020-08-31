@@ -14,5 +14,5 @@ CONDOR_CHECKOUT_LOCATION=/repo/ensembl-hive-htcondor
 export DEBIAN_FRONTEND=noninteractive
 $EHIVE_ROOT_DIR/docker/setup_cpan.Ubuntu-16.04.sh $CONDOR_CHECKOUT_LOCATION
 
-sudo --login -u condoradmin $CONDOR_CHECKOUT_LOCATION/travisci/run_tests.sh
+sudo --login -u condoradmin $CONDOR_CHECKOUT_LOCATION/scripts/test-suite/run_tests.sh
 
