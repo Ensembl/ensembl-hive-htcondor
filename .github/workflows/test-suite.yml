@@ -11,4 +11,4 @@ jobs:
       options: "-v $GITHUB_WORKSPACE:/home/travis/build/Ensembl/ensembl-hive-htcondor"
     steps:
       - name: Run
-        uses: /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
+        run: /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
