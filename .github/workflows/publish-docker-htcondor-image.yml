@@ -1,5 +1,6 @@
 name: Publish docker-htcondor image
 on:
+  workflow_dispatch:
   push:
     paths:
       - scripts/docker-htcondor/**
