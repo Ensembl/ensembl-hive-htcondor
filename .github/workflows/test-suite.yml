@@ -1,0 +1,14 @@
+name: Run the test suite
+on:
+  workflow_dispatch
+
+jobs:
+  run_tests:
+    name: Run the ensembl-hive-htcondor test suite
+    runs-on: ubuntu-latest
+    container:
+      image: docker.pkg.github.com/muffato/ensembl-hive-htcondor/ensembl-hive-htcondor
+      options: "-v $GITHUB_WORKSPACE:/home/travis/build/Ensembl/ensembl-hive-htcondor"
+    steps:
+      - name: Run
+        uses: /home/travis/build/Ensembl/ensembl-hive-htcondor/travisci/setup_docker_and_run_tests.sh
