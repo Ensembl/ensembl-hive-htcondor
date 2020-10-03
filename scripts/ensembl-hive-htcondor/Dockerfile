@@ -13,12 +13,3 @@ RUN mkdir /repo \
 RUN /repo/ensembl-hive/docker/setup_os.Ubuntu-14.04.sh \
     && /repo/ensembl-hive/docker/setup_cpan.Ubuntu-14.04.sh /repo/ensembl-hive /repo/ensembl-hive-htcondor
 
-ENV EHIVE_ROOT_DIR "/repo/ensembl-hive/"
-ENV PATH "/repo/ensembl-hive/scripts:$PATH"
-ENV PERL5LIB "/repo/ensembl-hive/modules:/repo/ensembl-hive-htcondor/modules:$PERL5LIB"
-ENV EHIVE_TEST_PIPELINE_URLS "sqlite:////home/condoradmin/"
-ENV EHIVE_MEADOW_TO_TEST "HTCondor"
-
-# Since the environment is set for the root user, but root is not allowed
-# to submit jobs, we need to login as condoradmin and preserve the environment
-CMD ["/bin/login", "-p", "-f", "condoradmin"]

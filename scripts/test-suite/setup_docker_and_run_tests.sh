@@ -8,6 +8,7 @@ set -e
 
 echo "DEBUG: Environment of $0"; env; id; echo "END_DEBUG"
 
+EHIVE_ROOT_DIR=/repo/ensembl-hive
 CONDOR_CHECKOUT_LOCATION=/repo/ensembl-hive-htcondor
 
 # Install extra packages inside the container
