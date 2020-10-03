@@ -12,7 +12,7 @@ RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 # install required software
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y \
-    && apt-get install -y htcondor man \
+    && apt-get install -y htcondor man git \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # add files to container from local directory

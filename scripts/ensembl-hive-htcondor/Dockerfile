@@ -4,10 +4,6 @@
 # Cloned and updated version of our docker-htcondor container
 FROM docker.pkg.github.com/muffato/ensembl-hive-htcondor/docker-htcondor
 
-# Install git
-ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update -y && apt-get install -y git && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # Clone the repos
 RUN mkdir /repo \
     && git clone -b version/2.5 https://github.com/Ensembl/ensembl-hive.git /repo/ensembl-hive \
