@@ -1,6 +1,11 @@
 name: Run the test suite
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  push:
+    paths:
+      - modules/**
+      - scripts/test-suite/**
+      - t/**
 
 jobs:
   run-tests:
