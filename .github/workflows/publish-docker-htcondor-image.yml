@@ -16,10 +16,10 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PERSONAL_TOKEN_UPLOAD_PACKAGE }}
           path: scripts/docker-htcondor
-          registry: docker.pkg.github.com
-          repository: muffato/ensembl-hive-htcondor/docker-htcondor
+          registry: ghcr.io
+          repository: muffato/docker-htcondor
           tags: latest
       - name:
         uses: benc-uk/workflow-dispatch@v1
