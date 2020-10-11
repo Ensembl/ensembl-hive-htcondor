@@ -18,9 +18,9 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
+          password: ${{ secrets.PERSONAL_TOKEN_UPLOAD_PACKAGE }}
+          registry: ghcr.io
       - name: Pull the Docker image
-        run: docker pull docker.pkg.github.com/muffato/ensembl-hive-htcondor/ensembl-hive-htcondor:version-2.5
+        run: docker pull ghcr.io/muffato/ensembl-hive-htcondor:version-2.5
       - name: Run the test suite
-        run: docker run -v $GITHUB_WORKSPACE:/repo/ensembl-hive-htcondor docker.pkg.github.com/muffato/ensembl-hive-htcondor/ensembl-hive-htcondor:version-2.5 /repo/ensembl-hive-htcondor/scripts/test-suite/setup_docker_and_run_tests.sh
+        run: docker run -v $GITHUB_WORKSPACE:/repo/ensembl-hive-htcondor ghcr.io/muffato/ensembl-hive-htcondor:version-2.5 /repo/ensembl-hive-htcondor/scripts/test-suite/setup_docker_and_run_tests.sh

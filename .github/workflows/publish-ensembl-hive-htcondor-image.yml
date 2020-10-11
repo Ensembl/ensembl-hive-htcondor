@@ -16,10 +16,10 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PERSONAL_TOKEN_UPLOAD_PACKAGE }}
           path: scripts/ensembl-hive-htcondor
-          registry: docker.pkg.github.com
-          repository: muffato/ensembl-hive-htcondor/ensembl-hive-htcondor
+          registry: ghcr.io
+          repository: muffato/ensembl-hive-htcondor
           #tags: 2.5
           tag_with_ref: true
       - name:

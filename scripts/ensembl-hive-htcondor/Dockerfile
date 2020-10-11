@@ -2,7 +2,7 @@
 # run and test eHive
 
 # Cloned and updated version of our docker-htcondor container
-FROM docker.pkg.github.com/muffato/ensembl-hive-htcondor/docker-htcondor
+FROM ghcr.io/muffato/docker-htcondor
 
 # Clone the ensembl-hive repo and install its dependencies
 RUN mkdir /repo \
