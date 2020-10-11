@@ -4,6 +4,8 @@
 # Cloned and updated version of our docker-htcondor container
 FROM ghcr.io/muffato/docker-htcondor
 
+LABEL org.opencontainers.image.source https://github.com/muffato/ensembl-hive-htcondor
+
 # Clone the ensembl-hive repo and install its dependencies
 RUN mkdir /repo \
     && git clone -b version/2.5 https://github.com/Ensembl/ensembl-hive.git /repo/ensembl-hive \

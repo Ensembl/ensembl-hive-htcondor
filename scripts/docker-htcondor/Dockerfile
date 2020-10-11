@@ -3,6 +3,8 @@
 # Better than ubuntu
 FROM phusion/baseimage:0.9.18
 
+LABEL org.opencontainers.image.source https://github.com/muffato/ensembl-hive-htcondor
+
 # set HOME as it is missing from the base image
 ENV HOME /root
 
