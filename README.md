@@ -2,7 +2,7 @@
 HTCondor Meadow for eHive
 =========================
 
-[![Build Status](https://travis-ci.org/Ensembl/ensembl-hive-htcondor.svg?branch=master)](https://travis-ci.org/Ensembl/ensembl-hive-htcondor)
+[![Build Status](https://travis-ci.org/Ensembl/ensembl-hive-htcondor.svg?branch=version/2.6)](https://travis-ci.org/Ensembl/ensembl-hive-htcondor)
 
 [eHive](https://github.com/Ensembl/ensembl-hive) is a system for running computation pipelines on distributed computing resources - clusters, farms or grids.
 This repository is the implementation of eHive's _Meadow_ interface for the [HTCondor](https://research.cs.wisc.edu/htcondor/) job scheduler.
@@ -13,8 +13,8 @@ Version numbering and compatibility
 
 This repository is versioned the same way as eHive itself, and both
 checkouts are expected to be on the same branch name to function properly.
-* `version/2.5` is a stable branch that works with eHive's `version/2.5`
-  branch. Both branches are _stable_ and _only_ receive bugfixes.
+* `version/2.5`, `version/2.6`, etc. are stable branches that work with eHive's branches
+  of the same name. These branches are _stable_ and _only_ receive bugfixes.
 * `master` is the development branch and follows eHive's `master`. We
   primarily maintain eHive, so both repos may sometimes go out of sync
   until we upgrade the HTCondor module too
